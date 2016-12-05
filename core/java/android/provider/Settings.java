@@ -5539,6 +5539,12 @@ public final class Settings {
          */
         public static final String LOCKCLOCK_FONT_SIZE = "lockclock_font_size";
 
+        /**
+         * Whether to launch default music player when headset plugged in
+         * @hide
+         */
+        public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
+
         /** End of Vortex system settings**/
 
         /**
