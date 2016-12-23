@@ -46,4 +46,6 @@
     <string name="accessibility_quick_settings_reading_mode_off">Modo lectura desactivado.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_on">Modo lectura activado.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_off">Modo lectura desactivado.</string>
+    <!-- Recents free RAM -->
+    <string name="recents_free_ram">Memoria RAM libre: %1$d MB</string>	
 </resources>
