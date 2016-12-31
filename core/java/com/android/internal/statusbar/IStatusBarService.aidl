@@ -107,4 +107,5 @@ interface IStatusBarService
      * Vortex
      */
     void toggleCameraFlash();
+    void restartUI();
 }
