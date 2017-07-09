@@ -244,4 +244,7 @@
 	<!-- SystemUI Restart -->
 	<java-symbol type="string" name="systemui_restart_title" />
 	<java-symbol type="string" name="systemui_restart_message" />	
- </resources>
+
+    <!-- Package sensor drain -->
+    <java-symbol type="array" name="config_blockPackagesSensorDrain" />
+</resources>
