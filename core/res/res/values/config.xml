@@ -2659,6 +2659,13 @@
         <item>power</item>
         <item>restart</item>
         <item>recovery</item>
+        <item>screenshot</item>
+        <item>airplane</item>
+        <item>settings</item>
+        <item>lockdown</item>
+        <item>logout</item>
+        <item>users</item>
+        <item>silent</item>
         <item>emergency</item>
         <item>onthego</item>
     </string-array>
