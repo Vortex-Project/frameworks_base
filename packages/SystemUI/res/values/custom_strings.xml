@@ -246,4 +246,7 @@
 
     <!-- Recents free RAM -->
     <string name="recents_free_ram">Free RAM: %1$d MB</string>	
+
+    <string name="lockscreen_default">Default</string>
+    <string name="lockscreen_hidden">None</string>
 </resources>
