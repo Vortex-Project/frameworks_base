@@ -172,4 +172,9 @@
     <string name="gaming_mode_dialog_message">When gaming mode is enabled, all heads-up messages will be disabled. All the disabled settings will be reset to default once you exit Gaming Mode.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Gaming mode on</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Gaming mode off</string>
+
+    <!-- Music tile -->
+    <string name="quick_settings_music_label">Music</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pause</string>
 </resources>
