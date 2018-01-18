@@ -5430,6 +5430,13 @@ public final class Settings {
          */
         public static final String LOCK_OWNER_FONTS = "lock_owner_fonts";
 
+		/**
+         * Force an Ambient notification when a new media track is being played
+         * 0 - disabled
+         * 1 - show track info within normal Ambient Display and force a new Ambient clean layout when skipping tracks
+         * @hide
+         */
+        public static final String FORCE_AMBIENT_FOR_MEDIA = "force_ambient_for_media";
         /** End of Vortex system settings**/
 
         /**
