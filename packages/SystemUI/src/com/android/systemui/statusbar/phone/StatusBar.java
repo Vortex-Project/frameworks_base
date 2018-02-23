@@ -257,6 +257,7 @@ import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.policy.ZenModeController;
+import com.android.systemui.statusbar.screen_gestures.ScreenGesturesController;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.volume.VolumeComponent;
@@ -513,6 +514,12 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
      * fully locked mode we only show that unlocking is blocked.
      */
     private ScreenPinningNotify mScreenPinningNotify;
+
+    // Full Screen Gestures
+    protected ScreenGesturesController gesturesController;
+
+    // Tracking finger for opening/closing.
+    boolean mTracking;
 
     // for disabling the status bar
     private int mDisabled1 = 0;
@@ -908,6 +915,10 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         }
 
         // end old BaseStatusBar.start().
+
+        mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.EDGE_GESTURES_ENABLED), false,
+                mEdgeGesturesSettingsObserver);
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController);
@@ -1322,6 +1333,12 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         mHeadsUpManager.onDensityOrFontScaleChanged();
 
         reevaluateStyles();
+
+        ContentResolver resolver = mContext.getContentResolver();
+
+        boolean edgeGesturesEnabled = Settings.Secure.getIntForUser(resolver,
+                Settings.Secure.EDGE_GESTURES_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+        updateEdgeGestures(edgeGesturesEnabled);
     }
 
     private void onThemeChanged() {
@@ -5769,6 +5786,17 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         return mDeviceInteractive;
     }
 
+    private final ContentObserver mEdgeGesturesSettingsObserver = new ContentObserver(mHandler) {
+        @Override
+        public void onChange(boolean selfChange) {
+            ContentResolver resolver = mContext.getContentResolver();
+            boolean edgeGesturesEnabled = Settings.Secure.getIntForUser(resolver,
+                    Settings.Secure.EDGE_GESTURES_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+
+            updateEdgeGestures(edgeGesturesEnabled);
+        }
+    };
+
     @Override  // NotificationData.Environment
     public boolean isDeviceProvisioned() {
         return mDeviceProvisionedController.isDeviceProvisioned();
@@ -6657,4 +6685,17 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     saveImportance.run();
                 }
             };
+
+    public void updateEdgeGestures(boolean enabled) {
+        Log.d(TAG, "updateEdgeGestures: Updating edge gestures");
+        if (enabled) {
+            if (gesturesController == null) {
+                gesturesController = new ScreenGesturesController(mContext, mWindowManager, this);
+            }
+            gesturesController.reorient();
+        } else if (!enabled && gesturesController != null) {
+            gesturesController.stop();
+            gesturesController = null;
+        }
+    }
 }
