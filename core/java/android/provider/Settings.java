@@ -5351,6 +5351,16 @@ public final class Settings {
          */
         public static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
 
+        /**
+         * Whether to change the transparency of the qs panel
+         * @hide
+         */
+        public static final String QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
+
+        /** @hide */
+        private static final Validator QS_PANEL_BG_ALPHA_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /** End of Vortex system settings**/
 
         /**
@@ -5432,6 +5442,7 @@ public final class Settings {
             BOTTOM_GESTURE_SWIPE_LIMIT,
             THEMING_SETTINGS_DASHBOARD_ICONS,
             DOZE_ON_CHARGE,
+            QS_PANEL_BG_ALPHA,
         };
 
         /**
@@ -5636,6 +5647,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BOTTOM_GESTURE_SWIPE_LIMIT);
             PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
+            PRIVATE_SETTINGS.add(QS_PANEL_BG_ALPHA);
         }
 
         /**
@@ -5810,6 +5822,7 @@ public final class Settings {
                     BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR);
             VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
+            VALIDATORS.put(QS_PANEL_BG_ALPHA, QS_PANEL_BG_ALPHA_VALIDATOR);
         }
 
         /**
