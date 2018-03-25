@@ -9693,6 +9693,18 @@ public final class Settings {
         private static final Validator VOLUME_LINK_NOTIFICATION_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Show UI feedback when using back gesture.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_BACK_SHOW_UI_FEEDBACK = "edge_gestures_back_show_ui_feedback";
+
+        /**
+         * Use black arrow theme instead of the white version.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_BACK_USE_BLACK_ARROW = "edge_gestures_back_use_black_arrow";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
