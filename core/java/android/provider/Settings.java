@@ -5483,6 +5483,12 @@ public final class Settings {
         
         public static final String STABILIZATION_VELOCITY_AMPLITUDE = "stabilization_velocity_amplitude";
 
+        /** 
+         * Whether to show or hide the running services icon
+         * @hide
+         */
+        public static final String QS_RUNNING_SERVICES_TOGGLE = "qs_running_services_toggle";
+
         /** End of Vortex system settings**/
 
         /**
