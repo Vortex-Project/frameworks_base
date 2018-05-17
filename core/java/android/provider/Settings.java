@@ -5410,6 +5410,13 @@ public final class Settings {
          */
         public static final String FONT_PACKAGES = "font_packages";
 
+        /**
+         * Change fonts for the system lockscreen date
+         *
+         * @hide
+         */
+        public static final String LOCK_DATE_FONTS = "lock_date_fonts";
+
         /** End of Vortex system settings**/
 
         /**
