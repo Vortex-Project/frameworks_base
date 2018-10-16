@@ -5545,6 +5545,15 @@ public final class Settings {
          */
         public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
 
+        /**
+         * 0 - Default
+         * 1 - Round with ring
+         * 2 - Two-toned round with ring
+         * 3 - Squircle with ring
+         * @hide
+         */
+        public static final String QS_TILE_STYLE = "qs_tile_style";
+
         /** End of Vortex system settings**/
 
         /**
@@ -5829,6 +5838,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(QS_PANEL_BG_ALPHA);
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_STATUS_BAR);
+            PRIVATE_SETTINGS.add(QS_TILE_STYLE);
         }
 
         /**
