@@ -5716,6 +5716,12 @@ public final class Settings {
          */
         public static final String SENSOR_BLOCK = "sensor_block";
 
+        /**
+ 		 * Whether to use icon pack for Recents
+         * @hide
+         */
+        public static final String RECENTS_ICON_PACK = "recents_icon_pack";
+		
         /** End of Vortex system settings **/
 
         /**
