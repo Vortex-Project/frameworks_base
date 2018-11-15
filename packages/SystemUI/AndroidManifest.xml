@@ -224,7 +224,7 @@
     <protected-broadcast android:name="com.android.settingslib.action.UNREGISTER_SLICE_RECEIVER" />
 
     <!-- Weather on lockscreen -->
-    <uses-permission android:name="org.pixelexperience.weather.client.READ_WEATHER" />
+    <uses-permission android:name="com.android.providers.weather.READ_WEATHER" />
 
     <!-- DayNight mode -->
     <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
