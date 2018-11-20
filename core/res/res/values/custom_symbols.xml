@@ -227,4 +227,7 @@
    <!-- Shishu Nerves -->
    <java-symbol type="drawable" name="bootleg_theme_nerves_bg01" />
    <java-symbol type="drawable" name="bootleg_theme_nerves_bg02" />
+
+  <!-- System fonts -->
+  <java-symbol type="array" name="config_fontPackages" />
 </resources>
