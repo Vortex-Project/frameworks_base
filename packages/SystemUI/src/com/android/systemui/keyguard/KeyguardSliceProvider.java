@@ -287,7 +287,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
         mWeatherSettingsObserver.updateLockscreenUnit();
         mWeatherSettingsObserver.updateDateSkeleton();
         mWeatherClient = new WeatherClient(getContext());
-        mWeatherClient.addObserver(this);
+        mWeatherClient.addObserver(this, false /*withQuery*/);
         mDatePattern = getContext().getString(R.string.system_ui_aod_date_pattern);
         registerClockUpdate();
         updateClock();

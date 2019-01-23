@@ -116,18 +116,6 @@ public class WeatherClient {
         }
     }
 
-    public static boolean isAvailable(Context context) {
-        final PackageManager pm = context.getPackageManager();
-        try {
-            pm.getPackageInfo(SERVICE_PACKAGE, PackageManager.GET_ACTIVITIES);
-            int enabled = pm.getApplicationEnabledSetting(SERVICE_PACKAGE);
-            return enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED &&
-                    enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER;
-        } catch (PackageManager.NameNotFoundException e) {
-            return false;
-        }
-    }
-
     private int getRandomInt() {
         Random r = new Random();
         return r.nextInt((20000000 - 10000000) + 1) + 10000000;
@@ -240,8 +228,26 @@ public class WeatherClient {
         isRunning = false;
     }
 
-    public void addObserver(final WeatherObserver observer) {
+    public void addObserver(final WeatherObserver observer, boolean withQuery) {
         mObserver.add(observer);
+        if (withQuery) {
+            if (isRunning) {
+                return;
+            }
+            isRunning = true;
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    updateWeatherData();
+                    try {
+                        observer.onWeatherUpdated(mWeatherInfo);
+                    } catch (Exception ignored) {
+                    }
+                }
+            });
+            thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
+            thread.start();
+        }
     }
 
     public void removeObserver(WeatherObserver observer) {
@@ -301,9 +307,8 @@ public class WeatherClient {
         }
 
         public int getWeatherConditionImage() {
-            if (conditionsToDrawableMap.containsKey(conditions)){
+            if (conditionsToDrawableMap.containsKey(conditions))
                 return conditionsToDrawableMap.get(conditions);
-            }
             return 0;
         }
 
