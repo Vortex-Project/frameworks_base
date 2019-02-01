@@ -5289,6 +5289,21 @@ public final class Settings {
         public static final String SHOW_BATTERY_ESTIMATE = "show_battery_estimate";
 
         /**
+         * Whether to enable DOZE only when charging
+         * @hide
+         */
+        public static final String DOZE_ON_CHARGE = "doze_on_charge";
+
+        private static final Validator DOZE_ON_CHARGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * hidden stting of the current state of DOZE only when charging
+         * @hide
+         */
+        public static final String DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
+
+        /**
          * Applications list where heasdup should't show
          *
          * @hide
@@ -5394,6 +5409,7 @@ public final class Settings {
             BOTTOM_GESTURE_TRIGGER_TIMEOUT,
             BOTTOM_GESTURE_SWIPE_LIMIT,
             THEMING_SETTINGS_DASHBOARD_ICONS,
+            DOZE_ON_CHARGE,
         };
 
         /**
@@ -5597,6 +5613,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BOTTOM_GESTURE_TRIGGER_TIMEOUT);
             PRIVATE_SETTINGS.add(BOTTOM_GESTURE_SWIPE_LIMIT);
             PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
+            PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
         }
 
         /**
@@ -5770,6 +5787,7 @@ public final class Settings {
             VALIDATORS.put(BOTTOM_GESTURE_SWIPE_LIMIT,
                     BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR);
             VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
+            VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
         }
 
         /**
