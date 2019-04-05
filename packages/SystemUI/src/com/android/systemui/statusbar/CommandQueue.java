@@ -95,7 +95,9 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_SHOW_PINNING_TOAST_ESCAPE     = 46 << MSG_SHIFT;
     private static final int MSG_TOGGLE_CAMERA_FLASH           = 47 << MSG_SHIFT;
     private static final int MSG_RESTART_UI                    = 48 << MSG_SHIFT;
-    private static final int MSG_TOGGLE_SETTINGS_PANEL                  = 100 << MSG_SHIFT;
+    private static final int MSG_IN_DISPLAY_FINGERPRINT        = 49 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_SETTINGS_PANEL         = 100 << MSG_SHIFT;
+
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -169,6 +171,7 @@ public class CommandQueue extends IStatusBar.Stub {
         default void onFingerprintHelp(String message) { }
         default void onFingerprintError(String error) { }
         default void hideFingerprintDialog() { }
+        default void handleInDisplayFingerprintView(boolean show, boolean isEnrolling) { }
         default void toggleCameraFlash() { }
         default void restartUI() { }
     }
@@ -565,6 +568,17 @@ public class CommandQueue extends IStatusBar.Stub {
     }
 
     @Override
+    public void handleInDisplayFingerprintView(boolean show, boolean isEnrolling) {
+        synchronized (mLock) {
+            SomeArgs args = SomeArgs.obtain();
+            args.arg1 = show;
+            args.arg2 = isEnrolling;
+            mHandler.obtainMessage(MSG_IN_DISPLAY_FINGERPRINT, args)
+                    .sendToTarget();
+        }
+    }
+
+    @Override
     public void toggleCameraFlash() {
         synchronized (mLock) {
             mHandler.removeMessages(MSG_TOGGLE_CAMERA_FLASH);
@@ -828,6 +842,13 @@ public class CommandQueue extends IStatusBar.Stub {
                 case MSG_SHOW_PINNING_TOAST_ESCAPE:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).showPinningEscapeToast();
+                    }
+                    break;
+                case MSG_IN_DISPLAY_FINGERPRINT:
+                    for (int i = 0; i < mCallbacks.size(); i++) {
+                        mCallbacks.get(i).handleInDisplayFingerprintView(
+                                (boolean)((SomeArgs)msg.obj).arg1,
+                                (boolean)((SomeArgs)msg.obj).arg2);
                     }
                     break;
                 case MSG_TOGGLE_CAMERA_FLASH:
