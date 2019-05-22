@@ -308,11 +308,13 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     private void updatePercentText() {
-        if (mBatteryController != null && mBatteryPercentView != null) {
-            if (!mShowEstimate || !misQsbHeader || mCharging) {
-                setPercentTextAtCurrentLevel();
-            } else {
-                mBatteryController.getEstimatedTimeRemainingString(this::onEstimateFetchComplete);
+        if (getMeterStyle() != BatteryMeterDrawableBase.BATTERY_STYLE_HIDDEN) {
+            if (mBatteryController != null && mBatteryPercentView != null) {
+                if (!mShowEstimate || !misQsbHeader || mCharging) {
+                    setPercentTextAtCurrentLevel();
+                } else {
+                    mBatteryController.getEstimatedTimeRemainingString(this::onEstimateFetchComplete);
+                }
             }
         }
     }
@@ -325,7 +327,13 @@ public class BatteryMeterView extends LinearLayout implements
 
     private void onEstimateFetchComplete(String estimate) {
         if (estimate != null) {
-            mBatteryPercentView.setText(estimate);
+        int percentageStyle = Settings.System.getIntForUser(getContext().getContentResolver(),
+                SHOW_BATTERY_PERCENT, 0, mUser);
+            if ( percentageStyle != 0 ) {
+                mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f) + " | " + estimate);
+            } else {
+                mBatteryPercentView.setText(estimate);
+            }
         } else {
             setPercentTextAtCurrentLevel();
         }
