@@ -6505,5 +6505,14 @@ message MetricsEvent {
     // CustomSettings constant
     CUSTOM_SETTINGS = 1554;
 
+    // Vortex constants
+    VORTEX = 1555;
+
+    // Vortex Settings
+    VORTEX_SETTINGS = 1556;
+	
+	// Vortex Tiles
+	VORTEX_TILES = 1557; 
+
   }
 }
