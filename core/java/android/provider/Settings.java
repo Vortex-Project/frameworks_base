@@ -5447,6 +5447,21 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_CHARGING_ANIMATION = "lockscreen_charging_animation";
 
+        /**
+        * Battery Estimate
+        * @hide
+        */
+        public static final String SHOW_BATTERY_ESTIMATE = "show_battery_estimate";
+
+        /** @hide */
+        public static final Validator SHOW_BATTERY_ESTIMATE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+        * Battery Estimate Position
+        * @hide
+        */
+        public static final String BATTERY_ESTIMATE_POSITION = "battery_estimate_position";
+
         /** End of Vortex system settings**/
 
         /**
@@ -5731,6 +5746,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(QS_PANEL_BG_ALPHA);
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_STATUS_BAR);
+            PRIVATE_SETTINGS.add(SHOW_BATTERY_ESTIMATE);
         }
 
         /**
@@ -5902,6 +5918,7 @@ public final class Settings {
             VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
             VALIDATORS.put(QS_PANEL_BG_ALPHA, QS_PANEL_BG_ALPHA_VALIDATOR);
+            VALIDATORS.put(SHOW_BATTERY_ESTIMATE, SHOW_BATTERY_ESTIMATE_VALIDATOR);
         }
 
         /**

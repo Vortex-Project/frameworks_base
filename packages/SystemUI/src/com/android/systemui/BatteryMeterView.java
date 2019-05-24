@@ -17,6 +17,7 @@ package com.android.systemui;
 
 import static android.app.StatusBarManager.DISABLE2_SYSTEM_ICONS;
 import static android.app.StatusBarManager.DISABLE_NONE;
+import static android.provider.Settings.System.SHOW_BATTERY_ESTIMATE;
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
 import static android.provider.Settings.Secure.STATUS_BAR_BATTERY_STYLE;
 import static android.provider.Settings.System.DISPLAY_CUTOUT_HIDDEN;
@@ -329,12 +330,20 @@ public class BatteryMeterView extends LinearLayout implements
 
     private void onEstimateFetchComplete(String estimate) {
         if (estimate != null) {
-        int percentageStyle = Settings.System.getIntForUser(getContext().getContentResolver(),
-                SHOW_BATTERY_PERCENT, 0, mUser);
-            if ( percentageStyle != 0 ) {
-                mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f) + " | " + estimate);
+            int showestimate = Settings.System.getIntForUser(getContext().getContentResolver(),
+                    SHOW_BATTERY_ESTIMATE, 0, mUser);
+            int percentageStyle = Settings.System.getIntForUser(getContext().getContentResolver(),
+                    SHOW_BATTERY_PERCENT, 0, mUser);
+            if ( showestimate != 0 ) {
+                if ( percentageStyle != 0 ) {
+                    mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f) + " | " + estimate);
+                } else {
+                    mBatteryPercentView.setText(estimate);
+                }
             } else {
-                mBatteryPercentView.setText(estimate);
+                if ( percentageStyle != 0 ) {
+                    mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f));
+                }
             }
         } else {
             setPercentTextAtCurrentLevel();
@@ -400,6 +409,8 @@ public class BatteryMeterView extends LinearLayout implements
                     getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT ? 0 : startPadding,
                     0, 0, 0);
         }
+
+        updatePercentText();
     }
 
     private void createPercentView() {
