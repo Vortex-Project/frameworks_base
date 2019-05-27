@@ -5446,6 +5446,12 @@ public final class Settings {
         /** @hide */
         private static final Validator ONE_HAND_MODE_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to show charging animation on lock screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_CHARGING_ANIMATION = "lockscreen_charging_animation";
+
         /** End of Vortex system settings**/
 
         /**
