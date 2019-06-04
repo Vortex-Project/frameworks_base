@@ -69,7 +69,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private View mRightClock;
     private int mClockStyle;
     private View mNotificationIconAreaInner;
-    private View mNetworkTrafficHolder;
     private int mDisabled1;
     private StatusBar mStatusBarComponent;
     private DarkIconManager mDarkIconManager;
@@ -143,7 +142,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         Dependency.get(StatusBarIconController.class).addIconGroup(mDarkIconManager);
         mSystemIconArea = mStatusBar.findViewById(R.id.system_icon_area);
         mClockView = mStatusBar.findViewById(R.id.clock);
-        mNetworkTrafficHolder = mStatusBar.findViewById(R.id.network_traffic_holder);
         mCenterClockLayout = (LinearLayout) mStatusBar.findViewById(R.id.center_clock_layout);
         mRightClock = mStatusBar.findViewById(R.id.right_clock);
         mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
@@ -270,7 +268,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     }
 
     public void hideSystemIconArea(boolean animate) {
-        animateHide(mNetworkTrafficHolder, animate, true);
         animateHide(mSystemIconArea, animate, true);
         animateHide(mCenterClockLayout, animate, true);
         if (mClockStyle == 2) {
@@ -280,7 +277,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     public void showSystemIconArea(boolean animate) {
         animateShow(mSystemIconArea, animate);
-        animateShow(mNetworkTrafficHolder, animate);
         animateShow(mCenterClockLayout, animate);
         if (mClockStyle == 2) {
             animateShow(mRightClock, animate);
