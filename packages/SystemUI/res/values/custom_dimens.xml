@@ -35,7 +35,8 @@
     <dimen name="status_bar_battery_icon_width_percentage_inside">10.5dp</dimen>
 
     <!-- Network traffic -->
-    <dimen name="net_traffic_text_size">8sp</dimen>
+    <dimen name="net_traffic_single_text_size">14sp</dimen>
+    <dimen name="net_traffic_multi_text_size">8sp</dimen>
 	
 	<!-- OmniStyle -->
     <dimen name="qs_header_image_offset">25dp</dimen>
