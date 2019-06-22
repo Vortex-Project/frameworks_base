@@ -5787,9 +5787,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     Settings.System.LOCKSCREEN_CHARGING_ANIMATION),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                   Settings.System.SHOW_BATTERY_ESTIMATE),
-                   false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                    Settings.System.BATTERY_ESTIMATE_POSITION),
                    false, this, UserHandle.USER_ALL);
         }
@@ -5840,8 +5837,8 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CHARGING_ANIMATION))) {
                 updateChargingAnimation();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.SHOW_BATTERY_ESTIMATE)) ||
-                uri.equals(Settings.System.getUriFor(Settings.System.BATTERY_ESTIMATE_POSITION))) {
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.BATTERY_ESTIMATE_POSITION))) {
                 restartUI();				
             }
         }

@@ -17,6 +17,7 @@ package com.android.systemui;
 
 import static android.app.StatusBarManager.DISABLE2_SYSTEM_ICONS;
 import static android.app.StatusBarManager.DISABLE_NONE;
+import static android.provider.Settings.System.SHOW_BATTERY_ESTIMATE;
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
 import static android.provider.Settings.Secure.STATUS_BAR_BATTERY_STYLE;
 import static android.provider.Settings.System.DISPLAY_CUTOUT_HIDDEN;
@@ -254,6 +255,9 @@ public class BatteryMeterView extends LinearLayout implements
                 Settings.System.getUriFor(DISPLAY_CUTOUT_HIDDEN), false, mSettingObserver, mUser);
         updateShouldEnablePercentInsideIcon();
         updateShowPercent();
+        getContext().getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(SHOW_BATTERY_ESTIMATE), false, mSettingObserver, mUser);
+        updatePercentText();
         Dependency.get(TunerService.class).addTunable(this, STATUS_BAR_BATTERY_STYLE);
         Dependency.get(ConfigurationController.class).addCallback(this);
         mUserTracker.startTracking();
