@@ -5283,6 +5283,11 @@ public final class Settings {
         public static final Validator THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String SHOW_BATTERY_ESTIMATE = "show_battery_estimate";
+
         /** End of Vortex system settings**/
 
         /**
