@@ -67,7 +67,7 @@ public class VortexUtils {
     private static IStatusBarService mStatusBarService = null;
 
     private static IStatusBarService getStatusBarService() {
-        synchronized (EvolutionUtils.class) {
+        synchronized (VortexUtils.class) {
             if (mStatusBarService == null) {
                 mStatusBarService = IStatusBarService.Stub.asInterface(
                         ServiceManager.getService("statusbar"));
