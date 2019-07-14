@@ -31,9 +31,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Handler;
-import android.os.UserHandle;
 import android.provider.AlarmClock;
-import android.provider.Settings;
 import android.service.notification.ZenModeConfig;
 import android.support.annotation.VisibleForTesting;
 import android.widget.FrameLayout;
@@ -201,14 +199,14 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             mBatteryRemainingIcon = null;
 
             mBatteryMeterView.isQsbHeader();
-            mBatteryMeterView.setShowEstimate();
+            mBatteryMeterView.setShowEstimate(true);
             mBatteryMeterView.setOnClickListener(this);
         } else {
             ((ViewGroup) mBatteryMeterView.getParent()).removeView(mBatteryMeterView);
             mBatteryMeterView = null;
 
             mBatteryRemainingIcon.isQsbHeader();
-            mBatteryRemainingIcon.setShowEstimate();
+            mBatteryRemainingIcon.setShowEstimate(true);
             mBatteryRemainingIcon.setOnClickListener(this);
         }
 

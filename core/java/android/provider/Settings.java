@@ -5247,11 +5247,6 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
-         * @hide
-         */
-        public static final String SHOW_BATTERY_ESTIMATE = "show_battery_estimate";
-
-        /**
          * Whether to enable DOZE only when charging
          * @hide
          */
