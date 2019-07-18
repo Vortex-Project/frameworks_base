@@ -20,8 +20,6 @@
 
     <string name="sysui_overlay_dark">Dark</string>
 
-    <declare-styleable name="BackArrowView"> 
-        <attr name="reversed" format="boolean" /> 
-    </declare-styleable> 
+
 </resources>
 
