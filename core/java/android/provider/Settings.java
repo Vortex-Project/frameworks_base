@@ -5604,8 +5604,6 @@ public final class Settings {
          */
         public static final String SMART_CHARGING_RESUME_LEVEL = "smart_charging_resume_level";		
 
-        /** End of Vortex system settings**/
-
         /**
          * Use EdgeGesture Service for system gestures in PhoneWindowManager
          * @hide
@@ -5641,6 +5639,14 @@ public final class Settings {
          * @hide
          */
         public static final String RECENTS_LAYOUT_STYLE = "recents_layout_style";
+
+        /**
+         * Whether to show or hide the edit icon
+         * @hide
+         */
+        public static final String QS_EDIT_TOGGLE = "qs_edit_toggle";
+
+        /** End of Vortex system settings **/
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
