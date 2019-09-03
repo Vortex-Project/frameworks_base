@@ -86,6 +86,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
+import com.android.internal.util.vortex.VortexUtils;
 import com.android.internal.util.EmergencyAffordanceManager;
 import com.android.internal.util.ScreenshotHelper;
 import com.android.internal.widget.LockPatternUtils;
@@ -618,7 +619,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         }
     }
 
-    private class ScreenshotAction extends SinglePressAction {
+    private class ScreenshotAction extends SinglePressAction implements LongPressAction {
         public ScreenshotAction() {
             super(R.drawable.ic_screenshot, R.string.global_action_screenshot);
         }
@@ -641,6 +642,18 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                             MetricsEvent.ACTION_SCREENSHOT_POWER_MENU);
                 }
             }, 500);
+        }
+
+        @Override
+        public boolean onLongPress() {
+            mHandler.sendEmptyMessage(MESSAGE_DISMISS);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    VortexUtils.takeScreenshot(false);
+                }
+            }, 500);
+            return true;
         }
 
         @Override
