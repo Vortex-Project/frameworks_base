@@ -842,12 +842,12 @@ public final class Parcel {
             writeValue(e.getKey());
             writeValue(e.getValue());
             size--;
+
         }
 
         if (size != 0) {
             throw new BadParcelableException("Map size does not match number of entries!");
         }
-
     }
 
     /**
